@@ -1,0 +1,38 @@
+body{
+    background-color: #8d89ba;
+    height: 100vh;              
+    display: flex;
+    justify-content: center;    
+    align-items: center;        
+    margin: 0;      
+}
+#form-container{
+    display: flex;
+    background-color:#afacce;
+    border-radius: 15px;
+    box-shadow: #230339;
+    justify-content: center;
+    gap: 10px;
+    padding: 25px;
+}
+#myForm{
+    font-size: x-large;
+    color: black;
+    flex-direction: column;
+}
+input{
+    border: 10px solid ;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 5px;
+}
+input:invalid {
+  border-color: black;
+}
+input.valid {
+  border-color: green;
+}
+.error {
+  color: red;
+  font-size: 0.8em;
+}
