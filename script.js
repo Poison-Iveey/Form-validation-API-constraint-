@@ -163,12 +163,14 @@ form.addEventListener('submit', function(event) {
     validateConfirmPassword();
 
   if (isValid) {
-    success.textContent = "High five! Form is good.";
+    success.textContent = "Good Work! The Form works fine!";
     success.style.color = 'green';
+
+     setTimeout(() => {
     form.reset();
-    [email, country, postal, password, confirm].forEach(input => input.style.borderColor = '');
-  } else {
-    success.textContent = "Please fix the errors above.";
-    success.style.color = 'red';
-  }
+    [email, country, postal, password, confirm].forEach(
+      input => input.style.borderColor = ''
+    );
+  }, 1200);
+}
 });
