@@ -6,16 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Install System Dependencies') {
-            steps {
-                sh '''
-                  if command -v apt-get >/dev/null 2>&1; then
-                    apt-get update
-                    apt-get install -y libatomic1
-                  fi
-                '''
-            }
-        }
 
         stage('Install Dependencies') {
             steps {
