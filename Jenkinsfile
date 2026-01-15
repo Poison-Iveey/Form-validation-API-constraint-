@@ -1,46 +1,30 @@
 pipeline {
-  agent any
-
-  stages {
-
-    stage('Install Dependencies') {
-      steps {
-        sh 'npm install'
-      }
+    agent {
+        docker {
+            image 'node:20-alpine'
+            args '-u root'
+        }
     }
 
-    stage('Lint') {
-      steps {
-        sh 'npm run lint'
-      }
-    }
+    stages {
+        stage('Install Dependencies') {
+            steps {
+                sh 'node -v'
+                sh 'npm -v'
+                sh 'npm install'
+            }
+        }
 
-    stage('Test') {
-      steps {
-        sh 'npm run test'
-      }
-    }
+        stage('Lint') {
+            steps {
+                sh 'npm run lint'
+            }
+        }
 
-    stage('Build Artifact') {
-      steps {
-        sh 'npm run build'
-      }
+        stage('Test') {
+            steps {
+                sh 'npm test'
+            }
+        }
     }
-
-    stage('Docker Build') {
-      steps {
-        sh 'docker build -t form-validation-app .'
-      }
-    }
-
-    stage('Deploy to Azure VM') {
-      steps {
-        sh '''
-        docker stop form-app || true
-        docker rm form-app || true
-        docker run -d -p 80:80 --name form-app form-validation-app
-        '''
-      }
-    }
-  }
 }
